@@ -1,0 +1,59 @@
+<br>
+<div ibmGrid>
+    <div ibmRow>
+        <div ibmCol>
+            <h1>Today's entry</h1>
+        </div>
+    </div>
+    <div ibmRow>
+        <div ibmCol [columnNumbers]="{'lg':8}">
+            <ibm-label>
+                Title
+                <input ibmText [(ngModel)]="entry.title"/>
+            </ibm-label>
+            <ibm-label>
+                Today's Emotion
+                <ibm-content-switcher (selected)="emotionChanged($event)">
+                    <button ibmContentOption name="very happy">Very Happy</button>
+                    <button ibmContentOption name="happy">Happy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    <button ibmContentOption name="neutral">Neutral</button>
+                    <button ibmContentOption name="sad">Sad </button>
+                    <button ibmContentOption name="very sad">Very Sad</button>
+                </ibm-content-switcher>
+            </ibm-label>
+            <ibm-label>
+                Note
+                <textarea ibmTextArea [(ngModel)]="entry.note" rows="9"></textarea>
+            </ibm-label>
+            <button ibmButton="primary" (click)="saveEntry()">Save</button>
+        </div>
+        <div ibmCol [columnNumbers]="{'lg':8}">
+            <div class="notification-target">
+                
+            </div>
+            <div ibmGrid>
+                <div ibmRow>
+                    <div ibmCol [columnNumbers]="{'lg':13}">
+                        <h1 *ngIf="entry.title; else emptyTitle">{{entry.title}}</h1> 
+                        <ng-template #emptyTitle><h1>Preview heading</h1></ng-template>
+                        <h5>{{entry.date | date}}</h5>
+                    </div>
+                    <div ibmCol [columnNumbers]="{'lg':3}">
+                        <img *ngIf="entry.emotion=='very happy'" src="assets/pictograms/face--very--satisfied.svg"/>
+                        <img *ngIf="entry.emotion=='happy'" src="assets/pictograms/face--satisfied.svg"/>
+                        <img *ngIf="entry.emotion=='neutral'" src="assets/pictograms/face--neutral.svg"/>
+                        <img *ngIf="entry.emotion=='sad'" src="assets/pictograms/face--dissatisfied.svg"/>
+                        <img *ngIf="entry.emotion=='very sad'" src="assets/pictograms/face--very--dissatisfied.svg"/>
+                    </div>
+                </div>
+                <div ibmRow>
+                    <div ibmCol>
+                        <p *ngIf="entry.note; else emptyNote">{{entry.note}}</p>
+                        <ng-template #emptyNote><p>Preview content</p></ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,23 @@
+<ibm-modal size="lg" type="passive">
+    <ibm-modal-header (closeSelect)="closeModal()">
+        <h1>{{entry.date | date}}</h1>
+    </ibm-modal-header>
+    <div ibmGrid class="bx--grid--condensed scrollable" style="margin-left: 0px;margin-right: 0px;">
+        <div ibmRow>
+            <div ibmCol class="modal-title" [columnNumbers]="{'lg':14}"><h3>{{entry.title}}</h3></div>
+            <div ibmCol [columnNumbers]="{'lg':2}">
+                <img *ngIf="entry.emotion=='very happy'" src="assets/pictograms/face--very--satisfied.svg"/>
+                <img *ngIf="entry.emotion=='happy'" src="assets/pictograms/face--satisfied.svg"/>
+                <img *ngIf="entry.emotion=='neutral'" src="assets/pictograms/face--neutral.svg"/>
+                <img *ngIf="entry.emotion=='sad'" src="assets/pictograms/face--dissatisfied.svg"/>
+                <img *ngIf="entry.emotion=='very sad'" src="assets/pictograms/face--very--dissatisfied.svg"/>
+            </div>
+        </div>
+        <div ibmRow>
+            <div ibmCol><p>{{entry.note}}</p></div>
+        </div>
+        
+        
+    </div>
+    <br><br>
+</ibm-modal>

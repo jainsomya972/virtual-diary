@@ -1,0 +1,20 @@
+@import "~carbon-components/scss/globals/scss/typography";
+.heading {
+    @include type-style("display-04");
+    margin-bottom: $layout-04;
+    margin-top: $layout-03;
+}
+
+.logo{
+    width: 70%;
+}
+
+.center{
+    text-align: center;
+    vertical-align: center;
+}
+
+input {
+    margin-bottom: $spacing-07;
+}
+

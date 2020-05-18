@@ -1,0 +1,53 @@
+
+<div>
+<ibm-table-container>
+    <ibm-table-header>
+        <h1 ibmTableHeaderTitle>Archives</h1>
+    </ibm-table-header>
+    <ibm-table-toolbar [model]="tableModel" >
+        <ibm-table-toolbar-actions>
+            <button ibmButton="primary">
+                Delete
+                <!-- <ibm-icon-delete size="16" class="bx--btn__icon"></ibm-icon-delete> -->
+            </button>
+            <button ibmButton="primary">
+                Save
+                <!-- <ibm-icon-save size="16" class="bx--btn__icon"></ibm-icon-save> -->
+            </button>
+            <button ibmButton="primary">
+                Download
+                <!-- <ibm-icon-download size="16" class="bx--btn__icon"></ibm-icon-download> -->
+            </button>
+        </ibm-table-toolbar-actions>
+        <ibm-table-toolbar-content>
+            <!-- <ibm-table-toolbar-search [expandable]="true"></ibm-table-toolbar-search> -->
+            <ibm-date-picker (valueChange)="datePicked($event)" placeholder="Search Date"></ibm-date-picker>
+            <button ibmButton="ghost" class="toolbar-action">
+                <ibm-overflow-menu [flip]="false">
+                    <ibm-overflow-menu-option (click)="tableSize='sm'" >compact</ibm-overflow-menu-option>
+                    <ibm-overflow-menu-option (click)="tableSize='sh'">short</ibm-overflow-menu-option>
+                    <ibm-overflow-menu-option (click)="tableSize='md'">normal</ibm-overflow-menu-option>
+                    <ibm-overflow-menu-option (click)="tableSize='lg'">tall</ibm-overflow-menu-option>
+                </ibm-overflow-menu>
+                <ng-template #trigger><ibm-icon-settings16></ibm-icon-settings16></ng-template>
+            </button>
+            <button ibmButton="secondary" (click)="clearFilters()">Clear filters</button>
+        </ibm-table-toolbar-content>
+    </ibm-table-toolbar>
+    <ibm-table [model]="tableModel" [showSelectionColumn]="false" [size]="tableSize">
+        No Entries
+    </ibm-table>
+    <ibm-pagination [model]="paginationModel" (selectPage)="pageSelected($event)"></ibm-pagination>
+</ibm-table-container>
+<br><br><br><br><br><br><br>
+
+<ng-template #dateTemplate let-data="data">
+    <a (click)="openModal(data)">{{data}}</a>
+</ng-template>
+
+<ng-template #deleteTemplate let-data="data">
+    <a (click)="deleteEntry(data)"><ibm-icon-delete16></ibm-icon-delete16></a>
+</ng-template>
+
+<ibm-placeholder></ibm-placeholder>
+</div>
